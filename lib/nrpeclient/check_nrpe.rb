@@ -35,8 +35,8 @@ module Nrpeclient
           socket.connect
         end
 
-        socket.print(query.to_bytes)
-        response = socket.read
+        socket.write(query.to_bytes)
+        response = Nrpeclient::NrpePacket.read(socket)
         socket.close
         return response
       rescue Errno::ETIMEDOUT
@@ -49,16 +49,7 @@ module Nrpeclient
       args.each do |arg|
         message += '!' + arg
       end
-      result_bytes = self.send(message)
-      response = Nrpeclient::NrpePacket.new
-      response.packet_version = result_bytes[0,2]
-      response.packet_type = :response
-      response.crc32 = result_bytes[4,4]
-      response.result_code = result_bytes[8,2]
-      response.buffer = result_bytes[10,1024]
-      # response.validate_crc32
-      response.strip_buffer
-      return response
+      return self.send(message)
     end
   end
 end
