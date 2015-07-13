@@ -22,8 +22,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+  require 'nrpeclient'
+  request = Nrpeclient::CheckNrpe.new({:host=> 'hostname', :port=> '5666', :ssl => true})
+  response = request.send_command('command', 'arg1', 'arg2'..)
+  #Command result
+  puts response.buffer
 
+  #Return value
+  puts response.result_code
+  
+
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -38,4 +48,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
