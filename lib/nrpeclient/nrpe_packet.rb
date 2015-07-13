@@ -1,6 +1,6 @@
 require 'zlib'
 
-class NrpeClient
+module Nrpeclient
   class NrpePacket
     NRPE_PACKET_VERSION_3 = 3
     NRPE_PACKET_VERSION_2 = 2

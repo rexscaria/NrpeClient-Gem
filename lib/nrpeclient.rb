@@ -1,7 +1,7 @@
 require "nrpeclient/version"
 
 
-class NrpeClient
+module Nrpeclient
   STATUS_OK = 0
   STATUS_WARNING = 1
   STATUS_CRITICAL = 2

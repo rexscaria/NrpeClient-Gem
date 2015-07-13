@@ -1,7 +1,7 @@
 require 'socket'
 require 'openssl'
 
-class NrpeClient
+module Nrpeclient
   class CheckNrpe
     DEFAULT_OPTIONS = {
                         :host => '0.0.0.0',
