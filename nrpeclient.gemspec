@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Ruby version of check_nrpe command from Nagios core}
   spec.description   = %q{Executed the command passed at the remote machine where NRPE daemon is running.}
-  spec.homepage      = "https://github.com/scaria/nrpeclient"
+  spec.homepage      = "https://github.com/scaria/NrpeClient-Gem"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
