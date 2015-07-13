@@ -54,7 +54,7 @@ module Nrpeclient
     end
 
     def strip_buffer
-      self.buffer = self.buffer.lstrp.rstrip
+      self.buffer = self.buffer.lstrip.rstrip
     end
 
     def to_bytes(use_crc32=self.calculate_crc32)

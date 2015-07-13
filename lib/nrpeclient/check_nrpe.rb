@@ -5,7 +5,7 @@ module Nrpeclient
   class CheckNrpe
     DEFAULT_OPTIONS = {
                         :host => '0.0.0.0',
-                        :port => 5668,
+                        :port => '5666',
                         :ssl => false
                       }
 
@@ -19,14 +19,14 @@ module Nrpeclient
         @ssl.context.cert = OpenSSL::X509::Certificate.new(File.open("certificate.crt"))
         @ssl.context.key = OpenSSL::PKey::RSA.new(File.open("certificate.key"))
         @ssl.context.version = :SSLv23
-
       end
     end
 
     def send(message)
-      query = NrpeClient::NrpePacket.new
+      query = Nrpeclient::NrpePacket.new
       query.packet_type = :query
       query.buffer = message
+      query.result_code = Nrpeclient::STATUS_UNKNOWN
       begin
         socket = TCPSocket.open(@options[:host], @options[:port])
         if @options[:ssl]
@@ -50,13 +50,13 @@ module Nrpeclient
         message += '!' + arg
       end
       result_bytes = self.send(message)
-      response = NrpeClient::NrpePacket.new
+      response = Nrpeclient::NrpePacket.new
       response.packet_version = result_bytes[0,2]
-      response.packet_type = result_bytes[2,2]
+      response.packet_type = :response
       response.crc32 = result_bytes[4,4]
       response.result_code = result_bytes[8,2]
       response.buffer = result_bytes[10,1024]
-      response.validate_crc32
+      # response.validate_crc32
       response.strip_buffer
       return response
     end
