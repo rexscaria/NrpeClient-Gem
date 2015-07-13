@@ -1,8 +1,6 @@
 # Nrpeclient
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/nrpeclient`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem is an alternative for the check_nrpe plugin in Nagios to execute commands at the remote machines where the NRPE daemon is running.
 
 ## Installation
 
@@ -31,7 +29,7 @@ Or install it yourself as:
 
   #Return value
   puts response.result_code
-  
+
 
 ```
 ## Development
