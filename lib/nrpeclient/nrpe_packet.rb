@@ -61,11 +61,11 @@ module Nrpeclient
       [ @packet_version, @packet_type, use_crc32, @result_code, @buffer, @random].pack("nnNna#{MAX_PACKETBUFFER_LENGTH}n")
     end
 
-    def self.read(io)
+    def self.read(io, validate_crc32=true)
       bytes = io.read(MAX_PACKET_SIZE)
       values = bytes.unpack("nnNnA#{MAX_PACKETBUFFER_LENGTH}n")
       packet = self.new(values)
-      packet.validate_crc32
+      packet.validate_crc32 if validate_crc32
       packet
     end
   end
