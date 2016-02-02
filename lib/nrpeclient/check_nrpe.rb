@@ -15,8 +15,8 @@ module Nrpeclient
       if @options[:ssl]
         @ssl_context = OpenSSL::SSL::SSLContext.new :SSLv23
         @ssl_context.ciphers = 'ADH'
-        @ssl_context.cert = OpenSSL::X509::Certificate.new(File.open(@options.fetch(:ssl_cert)))
-        @ssl_context.key = OpenSSL::PKey::RSA.new(File.open(@options.fetch(:ssl_key)))
+        @ssl_context.cert = OpenSSL::X509::Certificate.new(File.open(@options.fetch(:ssl_cert))) if !@options[:ssl_cert].nil?
+        @ssl_context.key = OpenSSL::PKey::RSA.new(File.open(@options.fetch(:ssl_key))) if !@options[:ssl_key].nil?
       end
     end
 
