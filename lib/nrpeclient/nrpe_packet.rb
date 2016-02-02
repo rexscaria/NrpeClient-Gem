@@ -26,6 +26,15 @@ module Nrpeclient
         @result_code    = unpacked[3]
         @buffer         = unpacked[4]
         @random         = unpacked[5]
+        # Parse perfdata and return as a hash
+        if @buffer.include? "|" then
+          @perfdata = Hash.new
+          @buffer.split("|")[1].split(",").each do |metric|
+            key = metric.split("=")[0].strip
+            value = metric.split("=")[1].strip
+            @perfdata[:"#{key}"] = value
+          end
+        end
       end
     end
 
